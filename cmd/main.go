@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"proxy-server"
+	"proxy-server/lib"
 )
 
 func main() {
@@ -29,9 +29,9 @@ func main() {
 		Addr: ":8888",
 		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			if r.Method == http.MethodConnect {
-				proxy_server.HandleTunneling(w, r)
+				lib.HandleTunneling(w, r)
 			} else {
-				proxy_server.HandleHTTP(w, r)
+				lib.HandleHTTP(w, r)
 			}
 		}),
 		// Disable HTTP/2.
